@@ -25,3 +25,66 @@
 #container a {
   text-decoration: none;
 }
+
+@keyframes shake-horizontal {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.input-animado {
+  animation: izquierdaADerecha 1s ease-out;
+}
+
+@keyframes izquierdaADerecha {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.footer-shadow {
+  --background: #f1f1f1;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 16px;
+}
+
+.footer-text {
+  margin: 0;
+  padding-left: 8px;
+  text-align: left;
+  font-size: 14px;
+  color: #444;
+}
+
+.mat-datepicker-content {
+  z-index: 9999 !important;
+}
+
+.custom-alert .alert-wrapper {
+  border-radius: 20px;
+  padding: 20px;
+  background: #fefefe;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+.custom-alert .alert-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3b82f6; /* azul moderno */
+}
+
+.custom-alert strong {
+  color: #1d4ed8;
+}
