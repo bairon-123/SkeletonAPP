@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Pelupet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-title class="ion-text-center">Reservar Servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="reservaForm" (ngSubmit)="guardarReserva()" class="formulario-animado">
+
+    <div class="fade-in-up delay-1">
+      <ion-item>
+        <ion-label position="floating">Nombre del perro</ion-label>
+        <ion-input formControlName="nombrePerro" required></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="fade-in-up delay-2">
+      <ion-item>
+        <ion-label position="floating">Raza</ion-label>
+        <ion-input formControlName="raza" required></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="fade-in-up delay-3">
+      <ion-item>
+        <ion-label>Tamaño</ion-label>
+        <ion-select formControlName="tamaño" interface="popover">
+          <ion-select-option value="Pequeño">Pequeño</ion-select-option>
+          <ion-select-option value="Mediano">Mediano</ion-select-option>
+          <ion-select-option value="Grande">Grande</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="fade-in-up delay-4">
+      <ion-item>
+        <ion-label>Tipo de Servicio</ion-label>
+        <ion-select formControlName="tipoServicio" interface="popover">
+          <ion-select-option value="Express">Express</ion-select-option>
+          <ion-select-option value="Completo">Completo</ion-select-option>
+          <ion-select-option value="Premium">Premium</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="fade-in-up delay-5">
+      <ion-item>
+        <ion-label position="floating">Peso (kg)</ion-label>
+        <ion-input type="number" min="1" formControlName="peso"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="fade-in-up delay-6">
+      <ion-item>
+        <ion-label position="floating">Indicaciones</ion-label>
+        <ion-textarea formControlName="indicaciones"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <div class="fade-in-up delay-7">
+      <ion-item>
+        <ion-label>Fecha y Hora</ion-label>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      </ion-item>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="datetime"
+            presentation="date-time"
+            [min]="minDate"
+            (ionChange)="reservaForm.controls['fechaHora'].setValue($event.detail.value)">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </div>
+
+    <div class="fade-in-up delay-8">
+      <ion-button expand="block" type="submit" class="ion-margin-top">
+        Agendar
+      </ion-button>
+    </div>
+
+    <div class="fade-in-up delay-8">
+      <ion-button expand="block" color="medium" (click)="irHome()" style="margin-top: 20px;">
+        Volver a Inicio
+      </ion-button>
+    </div>
+
+  </form>
+</ion-content>

@@ -1,59 +1,26 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-title class="ion-text-center">SkeletonAPP</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Pelupet</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="ion-text-center">
-    <h1>Bienvenido!</h1>
-    <p>Usuario: <strong>{{ usuario }}</strong></p>
-    <h2 style="margin-top: 20px;">Información Adicional</h2>
+<ion-content class="ion-padding animacion-home">
+
+  <div class="ion-text-center fade-up delay-0">
+    <h2>¡Bienvenido a Pelupet!</h2>
+    <p>Tu app de peluquería canina a domicilio 🐾</p>
   </div>
 
-<ion-item>
-  <ion-label position="floating">Nombre</ion-label>
-  <ion-input
-    #nombreInput
-    [(ngModel)]="nombre"
-    type="text">
-  </ion-input>
-</ion-item>
+  <ion-button expand="block" color="success" routerLink="/reservas" class="fade-up delay-1">
+    Agendar hora
+  </ion-button>
 
-<ion-item>
-  <ion-label position="floating">Apellido</ion-label>
-  <ion-input
-    #apellidoInput
-    [(ngModel)]="apellido"
-    type="text">
-  </ion-input>
-</ion-item>
+  <ion-button expand="block" color="tertiary" routerLink="/perfil" class="fade-up delay-2">
+    Ver mi perfil
+  </ion-button>
 
-  <ion-item>
-    <ion-label>Nivel Educación</ion-label>
-    <ion-select [(ngModel)]="educacion" interface="action-sheet" placeholder="Seleccione Nivel">
-      <ion-select-option value="Primaria">Primaria</ion-select-option>
-      <ion-select-option value="Secundaria">Secundaria</ion-select-option>
-      <ion-select-option value="Técnico">Técnico</ion-select-option>
-      <ion-select-option value="Universitario">Universitario</ion-select-option>
-      <ion-select-option value="Otro">Otro</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-<mat-form-field appearance="fill" style="width: 100%; margin-top: 12px;">
-  <mat-label>Fecha Nacimiento</mat-label>
-  <input matInput [(ngModel)]="fechaNacimiento" [matDatepicker]="picker" [max]="fechaMaxima">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-
-<div class="ion-text-center ion-margin-top">
-  <ion-button expand="block" color="medium" (click)="limpiarCampos()">Limpiar</ion-button>
-  <ion-button expand="block" color="primary" (click)="mostrarDatos()">Mostrar</ion-button>
-</div>
+  <ion-button expand="block" color="medium" routerLink="/login" class="fade-up delay-3">
+    Cerrar sesión
+  </ion-button>
 
 </ion-content>
-<ion-footer class="footer-shadow">
-  <ion-toolbar>
-    <p class="footer-text">App desarrollada por bairon muñoz</p>
-  </ion-toolbar>

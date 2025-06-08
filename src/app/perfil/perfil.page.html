@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Pelupet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-title class="ion-text-center">Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-card class="fade-in-up">
+    <ion-card-header>
+      <ion-card-title>Información del Usuario</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>
+          <p><strong>Nombre de Usuario:</strong> {{ usuario.nombreUsuario || 'No disponible' }}</p>
+          <p><strong>Correo:</strong> {{ usuario.correo || 'No disponible' }}</p>
+          <p><strong>Rol:</strong> {{ usuario.rol === 'admin' ? 'Administrador' : 'Usuario' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+<ion-button expand="block" color="medium" (click)="irHome()" class="fade-in-up" style="margin-top: 20px;">
+  Volver a Inicio
+</ion-button>
+</ion-content>

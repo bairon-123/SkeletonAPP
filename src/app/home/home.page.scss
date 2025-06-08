@@ -1,90 +1,32 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-@keyframes shake-horizontal {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-10px); }
-  40% { transform: translateX(10px); }
-  60% { transform: translateX(-10px); }
-  80% { transform: translateX(10px); }
-  100% { transform: translateX(0); }
-}
-
-.input-animado {
-  animation: izquierdaADerecha 1s ease-out;
-}
-
-@keyframes izquierdaADerecha {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0.3;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  100% {
-    transform: translateX(0);
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.footer-shadow {
-  --background: #f1f1f1;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-  padding: 0 16px;
+.animacion-home {
+  animation: fadeUp 0.6s ease-out;
 }
 
-.footer-text {
-  margin: 0;
-  padding-left: 8px;
-  text-align: left;
-  font-size: 14px;
-  color: #444;
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
 }
 
-.mat-datepicker-content {
-  z-index: 9999 !important;
+.delay-0 {
+  animation-delay: 0.2s;
 }
-
-.custom-alert .alert-wrapper {
-  border-radius: 20px;
-  padding: 20px;
-  background: #fefefe;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  color: #333;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 16px;
-  text-align: center;
+.delay-1 {
+  animation-delay: 0.4s;
 }
-
-.custom-alert .alert-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #3b82f6; /* azul moderno */
+.delay-2 {
+  animation-delay: 0.6s;
 }
-
-.custom-alert strong {
-  color: #1d4ed8;
+.delay-3 {
+  animation-delay: 0.8s;
 }

@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import {
-  IonContent, IonHeader, IonTitle, IonToolbar,
-  IonItem, IonLabel, IonInput, IonButton
-} from '@ionic/angular/standalone';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { IonicModule, AlertController, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,33 +10,67 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
+    IonicModule,
     ReactiveFormsModule,
-    IonContent,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonButton
+    FormsModule
   ]
 })
 export class LoginPage {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private alertCtrl: AlertController,
+    private navCtrl: NavController
+  ) {
     this.loginForm = this.fb.group({
-      usuario: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(8)]],
-      password: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]]
+      nombreUsuario: ['', Validators.required],
+      usuario: ['', [Validators.required, Validators.email]],
+      contraseña: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(8)]]
     });
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const usuario = this.loginForm.value.usuario;
-      this.router.navigate(['/home'], {
-        queryParams: { usuario }
+  async login(): Promise<void> {
+    const form = this.loginForm;
+
+    if (form.invalid) {
+      let mensaje = '';
+
+      if (form.get('nombreUsuario')?.hasError('required')) {
+        mensaje = 'El nombre de usuario no puede estar vacío.';
+      } else if (form.get('usuario')?.hasError('required')) {
+        mensaje = 'El correo electrónico es obligatorio.';
+      } else if (form.get('usuario')?.hasError('email')) {
+        mensaje = 'El correo debe tener un formato válido (ej: usuario@correo.com).';
+      } else if (form.get('contraseña')?.hasError('required')) {
+        mensaje = 'La contraseña no puede estar vacía.';
+      } else if (form.get('contraseña')?.hasError('minlength') || form.get('contraseña')?.hasError('maxlength')) {
+        mensaje = 'La contraseña debe tener entre 5 y 8 caracteres.';
+      } else {
+        mensaje = 'Por favor completa los campos correctamente.';
+      }
+
+      const alert = await this.alertCtrl.create({
+        header: 'Error de validación',
+        message: mensaje,
+        buttons: ['OK']
       });
+      await alert.present();
+      return;
     }
+
+    const nombreUsuario: string = form.value.nombreUsuario;
+    const correo: string = form.value.usuario;
+    const contraseña: string = form.value.contraseña;
+
+    console.log('Nombre Usuario:', nombreUsuario);
+    console.log('Correo:', correo);
+    console.log('Contraseña:', contraseña);
+
+    localStorage.setItem('nombreUsuario', nombreUsuario);
+    localStorage.setItem('correoUsuario', correo);
+    localStorage.setItem('rolUsuario', 'usuario');
+
+    this.navCtrl.navigateForward('/home');
   }
 }
